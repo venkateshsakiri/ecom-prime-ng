@@ -27,6 +27,6 @@ export class AuthService {
   }
 
   public registerUsers(reqData:any){
-    return this.http.post('http://localhost:8080/auth/register',reqData)
+    return this.http.post(environment.baseUrl+'/api/auth/register',reqData)
   }
 }

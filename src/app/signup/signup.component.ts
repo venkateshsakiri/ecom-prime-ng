@@ -20,7 +20,7 @@ export class SignupComponent implements OnInit {
     ngOnInit(): void {
       this.registerForm = this.fb.group({
         email: [""],
-        userName:[''],
+        name:[''],
         password: [""],
         confirmPassword: [""],
       });
@@ -51,7 +51,11 @@ export class SignupComponent implements OnInit {
       this.isLoadingComplete = true;
       this.authService.registerUsers(this.registerForm.value).subscribe((res:any)=>{
         this.isLoadingComplete = false;
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: res?.message });
+        if(res.code == 200){
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: res?.message });
+        }else{
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: res?.message });
+        }
         this.registerForm.reset();
       },(error:any)=>{
         this.isLoadingComplete = false;
