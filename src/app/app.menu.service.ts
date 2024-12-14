@@ -1,9 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class MenuService {
-
+    constructor(public http:HttpClient){}
     private menuSource = new Subject<string>();
     private resetSource = new Subject();
 
@@ -16,5 +18,9 @@ export class MenuService {
 
     reset() {
         this.resetSource.next(true);
+    }
+
+    public getEntitlements(){
+        return this.http.get(environment.baseUrl+'/api/user/entitlements');
     }
 }

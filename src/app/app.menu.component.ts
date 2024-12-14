@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AppComponent} from './app.component';
+import { MenuService } from './app.menu.service';
 
 @Component({
     selector: 'app-menu',
@@ -7,15 +8,17 @@ import {AppComponent} from './app.component';
         <ul class="layout-menu">
             <li app-menuitem *ngFor="let item of model; let i = index;" [item]="item" [index]="i" [root]="true"></li>
         </ul>
+        <app-ajax-loader *ngIf="isLoadingComplete"></app-ajax-loader>
     `
 })
 export class AppMenuComponent implements OnInit {
-
+    isLoadingComplete:boolean = false;
     model: any[];
 
-    constructor(public app: AppComponent) {}
+    constructor(public app: AppComponent,public menuService:MenuService) {}
 
     ngOnInit() {
+        this.getAllEntitlements();
         this.model = [
             {
                 label: 'Favorites', icon: 'pi pi-fw pi-home',
@@ -25,15 +28,16 @@ export class AppMenuComponent implements OnInit {
             },
             {
                 label: 'Modules', icon: 'pi pi-fw pi-star-fill', routerLink: ['/'],
-                items:[
-                    {label: 'Customers', icon: 'pi pi-fw pi-users', routerLink: ['/dashboard/customer']},
-                    {label: 'leads', icon: 'pi pi-fw pi-dollar', routerLink: ['/dashboard/lead']},
-                    {label: 'Quotes', icon: 'pi pi-fw pi-sitemap', routerLink: ['/dashboard/quote']},
-                    {label: 'Jobs', icon: 'pi pi-fw pi-briefcase', routerLink: ['/dashboard/job']},
-                    {label: 'Calender', icon: 'pi pi-fw pi-calendar', routerLink: ['/dashboard/calender']},
-                    {label: 'Purchases', icon: 'pi pi-fw pi-shopping-bag', routerLink: ['/dashboard/purchase']},
-                    {label: 'Suppliers', icon: 'pi pi-fw pi-share-alt', routerLink: ['/dashboard/supplier']},
-                ]
+                items:[]
+                // items:[
+                //     {label: 'Customers', icon: 'pi pi-fw pi-users', routerLink: ['/dashboard/customer']},
+                //     {label: 'leads', icon: 'pi pi-fw pi-dollar', routerLink: ['/dashboard/lead']},
+                //     {label: 'Quotes', icon: 'pi pi-fw pi-sitemap', routerLink: ['/dashboard/quote']},
+                //     {label: 'Jobs', icon: 'pi pi-fw pi-briefcase', routerLink: ['/dashboard/job']},
+                //     {label: 'Calender', icon: 'pi pi-fw pi-calendar', routerLink: ['/dashboard/calender']},
+                //     {label: 'Purchases', icon: 'pi pi-fw pi-shopping-bag', routerLink: ['/dashboard/purchase']},
+                //     {label: 'Suppliers', icon: 'pi pi-fw pi-share-alt', routerLink: ['/dashboard/supplier']},
+                // ]
             },
             // {
             //     label: 'UI Kit', icon: 'pi pi-fw pi-star-fill', routerLink: ['/uikit'],
@@ -140,5 +144,35 @@ export class AppMenuComponent implements OnInit {
             //     ]
             // }
         ];
+    }
+
+    public getAllEntitlements(){
+        this.isLoadingComplete = true;
+        this.menuService.getEntitlements().subscribe((res:any)=>{
+            this.isLoadingComplete = false;
+            res.data.forEach((element:any) => {
+                if(element.key === 'CUSTOMERS'){
+                    this.model[1].items.push({
+                        label:element.name,
+                        icon: 'pi pi-fw pi-users',
+                        routerLink: ['/dashboard/customer']
+                    })
+                }
+                if(element.key === 'LEADS'){
+                    this.model[1].items.push({
+                        label: element.name, icon: 'pi pi-fw pi-dollar', routerLink: ['/dashboard/lead']
+                    })
+                }
+                if(element.key === 'QUOTES'){
+                    this.model[1].items.push({
+                        label: element.name, icon: 'pi pi-fw pi-sitemap', routerLink: ['/dashboard/quote']
+                    })
+                }
+
+            });
+
+        },(err)=>{
+            this.isLoadingComplete = false;
+        })
     }
 }

@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  // baseUrl:'http://localhost:8003'
- baseUrl:'https://ecom-nodejs-mxio.onrender.com'
+  baseUrl:'http://localhost:8003'
+//  baseUrl:'https://ecom-nodejs-mxio.onrender.com'
 };

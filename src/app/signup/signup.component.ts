@@ -25,8 +25,8 @@ export class SignupComponent implements OnInit {
         confirmPassword: [""],
       });
       this.loginForm = this.fb.group({
-        email: [""],
-        password: [""],
+        email: ["admin@gmail.com"],
+        password: ["123456"],
       });
     }
 
@@ -53,6 +53,7 @@ export class SignupComponent implements OnInit {
         this.isLoadingComplete = false;
         if(res.code == 200){
           this.messageService.add({ severity: 'success', summary: 'Success', detail: res?.message });
+
         }else{
           this.messageService.add({ severity: 'error', summary: 'Error', detail: res?.message });
         }
