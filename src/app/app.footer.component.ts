@@ -9,6 +9,11 @@ import {AppComponent} from './app.component';
                 <img id="footer-logo"
                      [src]="'assets/layout/images/logo-' + (app.layoutMode === 'light' ? 'poseidon' : 'poseidon-dark') + '.png'" alt="posedion-layout">
             </a>
+            <div class="overview-box">
+                <div class="overview-footer">
+                <span>Copyright &#169; 2025, sakiri venkatesh, Guntur.</span>
+                </div>
+            </div>
             <div class="social-icons">
                 <a><i class="pi pi-github"></i></a>
                 <a><i class="pi pi-facebook"></i></a>
