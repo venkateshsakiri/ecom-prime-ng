@@ -54,7 +54,7 @@ export class AppMenuComponent implements OnInit {
                     {label: 'Panel', icon: 'pi pi-fw pi-tablet', routerLink: ['/dashboard/uikit/panel']},
                     {label: 'Overlay', icon: 'pi pi-fw pi-clone', routerLink: ['/dashboard/uikit/overlay']},
                     {label: 'Media', icon: 'pi pi-fw pi-image', routerLink: ['/dashboard/uikit/media']},
-                    {label: 'Menu', icon: 'pi pi-fw pi-bars', routerLink: ['/uikit/menu'], preventExact: true},
+                    {label: 'Menu', icon: 'pi pi-fw pi-bars', routerLink: ['/dashboard/uikit/menu'], preventExact: true},
                     {label: 'Message', icon: 'pi pi-fw pi-comment', routerLink: ['/dashboard/uikit/message']},
                     {label: 'File', icon: 'pi pi-fw pi-file', routerLink: ['/dashboard/uikit/file']},
                     {label: 'Chart', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/dashboard/uikit/charts']},
@@ -78,13 +78,13 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Pages', icon: 'pi pi-fw pi-briefcase', routerLink: ['/pages'],
                 items: [
-                    {label: 'Crud', icon: 'pi pi-fw pi-pencil', routerLink: ['/pages/crud']},
-                    {label: 'Calendar', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['/pages/calendar']},
-                    {label: 'Timeline', icon: 'pi pi-fw pi-calendar', routerLink: ['/pages/timeline']},
+                    {label: 'Crud', icon: 'pi pi-fw pi-pencil', routerLink: ['/dashboard/pages/crud']},
+                    {label: 'Calendar', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['/dashboard/pages/calendar']},
+                    {label: 'Timeline', icon: 'pi pi-fw pi-calendar', routerLink: ['/dashboard/pages/timeline']},
                     {label: 'Landing', icon: 'pi pi-fw pi-globe', url: 'assets/pages/landing.html', target: '_blank'},
-                    {label: 'Login', icon: 'pi pi-fw pi-sign-in', routerLink: ['/login']},
-                    {label: 'Invoice', icon: 'pi pi-fw pi-dollar', routerLink: ['/pages/invoice']},
-                    {label: 'Help', icon: 'pi pi-fw pi-question-circle', routerLink: ['/pages/help']},
+                    {label: 'Login', icon: 'pi pi-fw pi-sign-in', routerLink: ['/dashboard/login']},
+                    {label: 'Invoice', icon: 'pi pi-fw pi-dollar', routerLink: ['/dashboard/pages/invoice']},
+                    {label: 'Help', icon: 'pi pi-fw pi-question-circle', routerLink: ['/dashboard/pages/help']},
                     {label: 'Error', icon: 'pi pi-fw pi-times-circle', routerLink: ['/error']},
                     {label: 'Not Found', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/notfound']},
                     {label: 'Access Denied', icon: 'pi pi-fw pi-lock', routerLink: ['/access']},
@@ -156,6 +156,11 @@ export class AppMenuComponent implements OnInit {
                 if(element.key === 'ENTITLEMENTS'){
                     this.model[1].items.push({
                         label: element.name, icon: 'pi pi-fw pi-users', routerLink: ['/dashboard/entitlements']
+                    })
+                }
+                if(element.key === 'CATEGORIES'){
+                    this.model[1].items.push({
+                        label: element.name, icon: 'pi pi-fw pi-eject', routerLink: ['/dashboard/category']
                     })
                 }
                 if(element.key === 'CUSTOMERS'){

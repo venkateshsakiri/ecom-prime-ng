@@ -40,6 +40,7 @@ import { SupplierComponent } from './suppliers/supplier/supplier.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthGuardGuard } from './services/auth-guard/auth-guard.guard';
 import { EntitlementsComponent } from './entitlements/entitlements.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 @NgModule({
     imports: [
@@ -53,6 +54,7 @@ import { EntitlementsComponent } from './entitlements/entitlements.component';
                     {path: '', component: DashboardDemoComponent, canActivate:[AuthGuardGuard]},
                     {path: 'customer', component: CustomersComponent,canActivate:[AuthGuardGuard]},
                     {path: 'entitlements', component: EntitlementsComponent,canActivate:[AuthGuardGuard]},
+                    {path: 'category', component: CategoriesComponent,canActivate:[AuthGuardGuard]},
                     {path: 'lead', component: LeadComponent, canActivate:[AuthGuardGuard]},
                     {path: 'quote', component: QuoteComponent, canActivate:[AuthGuardGuard]},
                     {path: 'job', component: JobviewComponent, canActivate:[AuthGuardGuard]},

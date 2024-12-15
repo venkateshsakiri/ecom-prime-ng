@@ -156,6 +156,7 @@ import { SupplierComponent } from './suppliers/supplier/supplier.component';
 import { AjaxLoaderComponent } from './ajax-loader/ajax-loader.component';
 import { SignupComponent } from './signup/signup.component';
 import { EntitlementsComponent } from './entitlements/entitlements.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -306,7 +307,8 @@ FullCalendarModule.registerPlugins([
         SupplierComponent,
         AjaxLoaderComponent,
         SignupComponent,
-        EntitlementsComponent
+        EntitlementsComponent,
+        CategoriesComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

@@ -37,4 +37,11 @@ export class CustomerService {
         return this.http.post(environment.baseUrl+'/api/user/get-entitlements',{role:'CUSTOMER'});
     }
 
+    public postCategory(req:any){
+        return this.http.post(environment.baseUrl+'/api/admin/category',req);
+    }
+    public getAllCategories(){
+        return this.http.get(environment.baseUrl+'/api/admin/category');
+    }
+
 }
