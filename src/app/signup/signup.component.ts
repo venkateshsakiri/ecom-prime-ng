@@ -25,10 +25,10 @@ export class SignupComponent implements OnInit {
         confirmPassword: [""],
       });
       this.loginForm = this.fb.group({
-        email: ["admin@gmail.com"],
-        password: ["123456"],
-        // email: [""],
-        // password: [""],
+        // email: ["admin@gmail.com"],
+        // password: ["123456"],
+        email: [""],
+        password: [""],
       });
     }
 
