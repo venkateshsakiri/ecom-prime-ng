@@ -20,7 +20,7 @@ export class MenuService {
         this.resetSource.next(true);
     }
 
-    public getEntitlements(){
-        return this.http.get(environment.baseUrl+'/api/user/entitlements');
+    public getEntitlements(req:any){
+        return this.http.post(environment.baseUrl+'/api/user/get-entitlements',req);
     }
 }
