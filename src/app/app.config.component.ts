@@ -16,7 +16,7 @@ import {Subscription} from 'rxjs';
                 <div class="layout-config-form" id="config-form">
                     <div class="layout-config-header">
                         <h5>Theme Customization</h5>
-                        <span>Poseidon offers different themes for layout, topbar, menu etc.</span>
+                        <span>Sakiri offers different themes for layout, topbar, menu etc.</span>
                     </div>
 
                     <div id="lightdark-panel" class="layout-config-section options">
@@ -228,7 +228,7 @@ export class AppConfigComponent implements OnInit, OnDestroy {
         this.appMain.configClick = true;
         event.preventDefault();
     }
-    
+
     ngOnDestroy() {
         if(this.subscription) {
             this.subscription.unsubscribe();
