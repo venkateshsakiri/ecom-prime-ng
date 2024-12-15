@@ -26,7 +26,11 @@
                 </div>
 			</div>
 		</div>
+	</div>
 
+</div>
+<div class="grid">
+	<div class="col-12">
         <div class="card">
 			<h5>Entitlement List</h5>
 			<p-table #dt1 [value]="customers1" dataKey="id" [rows]="10" [loading]="loading" [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']" responsiveLayout="scroll">
@@ -87,7 +91,6 @@
 				</ng-template>
     		</p-table>
 		</div>
-	</div>
-
+    </div>
 </div>
 <app-ajax-loader *ngIf="isLoadingComplete"></app-ajax-loader>
