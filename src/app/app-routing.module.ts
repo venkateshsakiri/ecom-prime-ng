@@ -55,6 +55,7 @@ import { CategoriesComponent } from './categories/categories.component';
                     {path: 'customer', component: CustomersComponent,canActivate:[AuthGuardGuard]},
                     {path: 'entitlements', component: EntitlementsComponent,canActivate:[AuthGuardGuard]},
                     {path: 'category', component: CategoriesComponent,canActivate:[AuthGuardGuard]},
+                    {path: 'products', component: AppCrudComponent,canActivate:[AuthGuardGuard]},
                     {path: 'lead', component: LeadComponent, canActivate:[AuthGuardGuard]},
                     {path: 'quote', component: QuoteComponent, canActivate:[AuthGuardGuard]},
                     {path: 'job', component: JobviewComponent, canActivate:[AuthGuardGuard]},

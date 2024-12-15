@@ -5,10 +5,7 @@ import {AppComponent} from './app.component';
     selector: 'app-footer',
     template: `
         <div class="layout-footer">
-            <a id="footerlogolink">
-                <img id="footer-logo"
-                     [src]="'assets/layout/images/logo-' + (app.layoutMode === 'light' ? 'poseidon' : 'poseidon-dark') + '.png'" alt="posedion-layout">
-            </a>
+
             <div class="overview-box">
                 <div class="overview-footer">
                 <span>Copyright &#169; 2025, sakiri venkatesh, Guntur.</span>

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Product } from '../domain/product';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class ProductService {
@@ -34,5 +35,9 @@ export class ProductService {
         .toPromise()
         .then(res => res.data as Product[])
         .then(data => data);
+    }
+
+    public getAllCategories(){
+        return this.http.get(environment.baseUrl+'/api/admin/category');
     }
 }

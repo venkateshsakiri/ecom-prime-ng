@@ -163,6 +163,11 @@ export class AppMenuComponent implements OnInit {
                         label: element.name, icon: 'pi pi-fw pi-eject', routerLink: ['/dashboard/category']
                     })
                 }
+                if(element.key === 'PRODUCTS'){
+                    this.model[1].items.push({
+                        label: element.name, icon: 'pi pi-fw pi-ticket', routerLink: ['/dashboard/products']
+                    })
+                }
                 if(element.key === 'CUSTOMERS'){
                     this.model[1].items.push({
                         label:element.name,

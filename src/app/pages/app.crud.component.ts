@@ -29,17 +29,22 @@ export class AppCrudComponent implements OnInit {
 
     statuses: any[];
 
+    categoryList:any;
+
+    selectedCategory:any;
+
     rowsPerPageOptions = [5, 10, 20];
 
     constructor(private productService: ProductService, private messageService: MessageService,
                 private confirmationService: ConfirmationService, private breadcrumbService: AppBreadcrumbService) {
         this.breadcrumbService.setItems([
-            {label: 'Pages'},
-            {label: 'Crud', routerLink: ['/pages/crud']}
+            {label: 'Dashboard'},
+            {label: 'product', routerLink: ['/dashboard/products']}
         ]);
     }
-    
+
     ngOnInit() {
+        this.getCategoriesList();
         this.productService.getProducts().then(data => this.products = data);
 
         this.cols = [
@@ -140,5 +145,55 @@ export class AppCrudComponent implements OnInit {
             id += chars.charAt(Math.floor(Math.random() * chars.length));
         }
         return id;
+    }
+
+    public getCategoriesList(){
+        this.productService.getAllCategories().subscribe((res:any)=>{
+            this.categoryList = res;
+        },()=>{
+
+        })
+    }
+    public onUpload(event: any) {
+        const file = event.files[0];
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+            this.product.image = reader.result as string;
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+    public onSelect(event: any) {
+        const file = event.files[0];
+        const reader = new FileReader();
+        this.product.imgName = event.files[0].name;
+        console.log(file)
+        reader.onload = (e: any) => {
+            // Store base64 string in product.image
+            this.product.image = e.target.result;
+
+            this.messageService.add({
+                severity: 'info',
+                summary: 'Success',
+                detail: 'File Selected'
+            });
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+    getImageSrc(base64String: string): string {
+        if (!base64String) {
+            return 'path/to/default/image.jpg'; // Default image if none provided
+        }
+
+        if (!base64String.startsWith('data:image')) {
+            return 'data:image/jpeg;base64,' + base64String;
+        }
+
+        return base64String;
     }
 }
