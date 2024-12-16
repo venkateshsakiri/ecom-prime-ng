@@ -40,4 +40,8 @@ export class ProductService {
     public getAllCategories(){
         return this.http.get(environment.baseUrl+'/api/admin/category');
     }
+
+    public addProducts(req:any){
+        return this.http.post(environment.baseUrl+'/api/admin/product',req);
+    }
 }

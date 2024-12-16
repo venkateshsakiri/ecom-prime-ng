@@ -17,6 +17,8 @@ export class AppCrudComponent implements OnInit {
 
     deleteProductsDialog: boolean = false;
 
+    isLoading: boolean = false;
+
     products: Product[];
 
     product: Product;
@@ -34,6 +36,8 @@ export class AppCrudComponent implements OnInit {
     selectedCategory:any;
 
     rowsPerPageOptions = [5, 10, 20];
+
+    base64Image:any;
 
     constructor(private productService: ProductService, private messageService: MessageService,
                 private confirmationService: ConfirmationService, private breadcrumbService: AppBreadcrumbService) {
@@ -103,27 +107,49 @@ export class AppCrudComponent implements OnInit {
 
     saveProduct() {
         this.submitted = true;
-
-        if (this.product.name.trim()) {
-            if (this.product.id) {
-                // @ts-ignore
-                this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value: this.product.inventoryStatus;
-                this.products[this.findIndexById(this.product.id)] = this.product;
-                this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000});
-            } else {
-                this.product.id = this.createId();
-                this.product.code = this.createId();
-                this.product.image = 'product-placeholder.svg';
-                // @ts-ignore
-                this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
-                this.products.push(this.product);
-                this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000});
-            }
-
-            this.products = [...this.products];
-            this.productDialog = false;
-            this.product = {};
+        this.isLoading = true;
+        const req = {
+            code:this.createId(),
+            name:this.product.name,
+            description:this.product.description,
+            category:this.product.category,
+            inventoryStatus:this.product.inventoryStatus,
+            rating:this.product.rating,
+            image:this.base64Image,
+            price:this.product.price+'',
+            quantity:this.product.quantity+''
         }
+        this.productService.addProducts(req).subscribe((res:any)=>{
+            if(res.code == 200){
+                this.messageService.add({severity: 'success', summary: 'Successful', detail: res?.message, life: 3000});
+                this.product = {};
+                this.base64Image = '';
+                this.isLoading = false;
+            }
+            this.productDialog = false;
+        },()=>{
+            this.isLoading = false;
+        })
+        // if (this.product.name.trim()) {
+        //     if (this.product.id) {
+        //         // @ts-ignore
+        //         this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value: this.product.inventoryStatus;
+        //         this.products[this.findIndexById(this.product.id)] = this.product;
+        //         this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000});
+        //     } else {
+        //         this.product.id = this.createId();
+        //         this.product.code = this.createId();
+        //         this.product.image = 'product-placeholder.svg';
+        //         // @ts-ignore
+        //         this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
+        //         this.products.push(this.product);
+        //         this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000});
+        //     }
+
+        //     this.products = [...this.products];
+        //     this.productDialog = false;
+        //     this.product = {};
+        // }
     }
 
     findIndexById(id: string): number {
@@ -154,31 +180,37 @@ export class AppCrudComponent implements OnInit {
 
         })
     }
-    public onUpload(event: any) {
-        const file = event.files[0];
-        const reader = new FileReader();
-
-        reader.onloadend = () => {
-            this.product.image = reader.result as string;
-        };
-
-        if (file) {
-            reader.readAsDataURL(file);
-        }
-    }
     public onSelect(event: any) {
         const file = event.files[0];
-        const reader = new FileReader();
-        this.product.imgName = event.files[0].name;
-        console.log(file)
-        reader.onload = (e: any) => {
-            // Store base64 string in product.image
-            this.product.image = e.target.result;
 
+        // Validate file type
+        if (!file.type.match(/image\/*/) ) {
+            this.messageService.add({
+                severity: 'error',
+                summary: 'Error',
+                detail: 'Please upload an image file'
+            });
+            return;
+        }
+
+        const reader = new FileReader();
+        this.product.imgName = file.name;
+
+        reader.onload = (e: any) => {
+            this.product.image = e.target.result;
+            this.base64Image = e.target.result;
             this.messageService.add({
                 severity: 'info',
                 summary: 'Success',
                 detail: 'File Selected'
+            });
+        };
+
+        reader.onerror = (error) => {
+            this.messageService.add({
+                severity: 'error',
+                summary: 'Error',
+                detail: 'Failed to read file'
             });
         };
 
