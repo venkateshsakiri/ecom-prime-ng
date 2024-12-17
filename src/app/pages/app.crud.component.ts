@@ -39,6 +39,8 @@ export class AppCrudComponent implements OnInit {
 
     base64Image:any;
 
+    public isProductsLoading:boolean = false;
+
     constructor(private productService: ProductService, private messageService: MessageService,
                 private confirmationService: ConfirmationService, private breadcrumbService: AppBreadcrumbService) {
         this.breadcrumbService.setItems([
@@ -49,7 +51,8 @@ export class AppCrudComponent implements OnInit {
 
     ngOnInit() {
         this.getCategoriesList();
-        this.productService.getProducts().then(data => this.products = data);
+        this.getAllProducts();
+        // this.productService.getProducts().then(data => this.products = data);
 
         this.cols = [
             {field: 'name', header: 'Name'},
@@ -125,6 +128,7 @@ export class AppCrudComponent implements OnInit {
                 this.product = {};
                 this.base64Image = '';
                 this.isLoading = false;
+                this.getAllProducts();
             }
             this.productDialog = false;
         },()=>{
@@ -227,5 +231,18 @@ export class AppCrudComponent implements OnInit {
         }
 
         return base64String;
+    }
+
+    public getAllProducts(){
+        this.isProductsLoading = true;
+        this.productService.getAllProducts().subscribe((res:any)=>{
+            this.isProductsLoading = false;
+            if(res.code == 200){
+                this.products = res?.data;
+                this.messageService.add({severity: 'success', summary: 'Successful', detail: res?.message, life: 3000});
+            }
+        },()=>{
+            this.isProductsLoading = false;
+        })
     }
 }

@@ -1,7 +1,7 @@
 <div class="grid p-fluid">
 	<div class="col-12 md:col-12">
 		<div class="card">
-			<h5>Add Category</h5>
+			<h5>{{isEdit? 'Update Category':'Add Category'}}</h5>
 			<div class="formgroup-inline">
                 <div class="field col-12 md:col-4">
                     <span class="p-float-label">
@@ -16,7 +16,7 @@
                     </span>
                 </div>
                 <div class="field col-12 md:col-2">
-                    <button pButton label="Add" (click)="addCategory()" [disabled]="!(name && description)"></button>
+                    <button pButton label="{{isEdit? 'Update' : 'Add'}}" (click)="addCategory()" [disabled]="!(name && description)"></button>
                 </div>
 			</div>
 		</div>

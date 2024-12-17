@@ -44,4 +44,7 @@ export class ProductService {
     public addProducts(req:any){
         return this.http.post(environment.baseUrl+'/api/admin/product',req);
     }
+    public getAllProducts(){
+        return this.http.get(environment.baseUrl+'/api/customer/product');
+    }
 }

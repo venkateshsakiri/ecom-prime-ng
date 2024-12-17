@@ -15,6 +15,7 @@ export class CategoriesComponent implements OnInit {
   public isLoadingComplete:boolean = false;
   public categoryList:any;
   public loading:boolean = false;
+  public isEdit:boolean =false;
 
   constructor(public customerService:CustomerService,public service: MessageService) { }
 
@@ -51,7 +52,9 @@ export class CategoriesComponent implements OnInit {
   }
 
   public editCategory(event:any){
-
+    this.isEdit = false;
+    this.name = event.name;
+    this.description = event.description;
   }
   public deleteCategory(event:any){
 
