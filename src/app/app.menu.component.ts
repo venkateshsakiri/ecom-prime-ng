@@ -39,6 +39,11 @@ export class AppMenuComponent implements OnInit {
                 //     {label: 'Purchases', icon: 'pi pi-fw pi-shopping-bag', routerLink: ['/dashboard/purchase']},
                 //     {label: 'Suppliers', icon: 'pi pi-fw pi-share-alt', routerLink: ['/dashboard/supplier']},
                 // ]
+            },{
+                label: 'E-Commerce',
+                items:[
+
+                ]
             },
             {
                 label: 'UI Kit', icon: 'pi pi-fw pi-star-fill', routerLink: ['/uikit'],
@@ -183,6 +188,11 @@ export class AppMenuComponent implements OnInit {
                 if(element.key === 'QUOTES'){
                     this.model[1].items.push({
                         label: element.name, icon: 'pi pi-fw pi-sitemap', routerLink: ['/dashboard/quote']
+                    })
+                }
+                if(element.key === 'PRODUCT_LIST'){
+                    this.model[2].items.push({
+                        label: element.name, icon: 'pi pi-fw pi-list', routerLink: ['/dashboard/ecommerce/product-list']
                     })
                 }
 

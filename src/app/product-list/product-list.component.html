@@ -1,0 +1,44 @@
+<div class="card">
+    <div class="text-900 font-medium text-4xl mb-4">Popular Products</div>
+    <div class="grid -mt-3 -ml-3 -mr-3">
+        <div class="col-12 md:col-6 lg:col-4 mb-5 lg:mb-0 ng-star-inserted" *ngFor="let data of products;let i = index;">
+            <div class="surface-card shadow-2 border-round p-3">
+                <div class="mb-3 relative">
+                    <img class="w-full" style="object-fit: contain; aspect-ratio: 3/3;" [src]="getImageSrc(data?.image)">
+                    <div class="absolute flex gap-2" style="bottom: 1rem; left: 1rem; width: calc(100% - 2rem);">
+                        <button type="button" pripple="" class="p-ripple p-element flex-1 border-1 border-white border-round py-2 px-3 bg-black-alpha-30 text-white inline-flex align-items-center justify-content-center hover:bg-black-alpha-40 transition-colors transition-duration-300 cursor-pointer">
+                            <i class="pi pi-shopping-cart text-base mr-2"></i>
+                            <span class="text-base">Cart</span>
+                        </button>
+
+                        <button type="button" pripple="" class="p-ripple p-element flex-1 border-1 border-white border-round py-2 px-3 bg-black-alpha-30 text-white inline-flex align-items-center justify-content-center hover:bg-black-alpha-40 transition-colors transition-duration-300 cursor-pointer">
+                            <i class="pi pi-credit-card text-base mr-2"></i>
+                            <span class="text-base">Buy</span>
+                        </button>
+
+                        <button type="button" pripple="" class="p-ripple p-element w-4rem border-1 border-white border-round py-2 px-3 bg-black-alpha-30 text-white inline-flex align-items-center justify-content-center hover:bg-black-alpha-40 transition-colors transition-duration-300 cursor-pointer">
+                            <i class="pi pi-heart text-base"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex flex-column align-items-center">
+                    <div class="flex justify-content-between align-items-center w-full mb-3">
+                        <span class="text-xl text-900 font-medium">{{data?.name}}</span>
+                        <span>
+                            <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
+                            <span class="font-medium">{{data?.rating}}</span>
+                        </span>
+                    </div>
+                    <p class="mt-0 mb-3 text-700 line-height-3 w-full text-overflow-ellipsis overflow-hidden white-space-nowrap"
+                       pTooltip="{{data?.description}}"
+                       tooltipPosition="top">
+                        {{data?.description}}
+                    </p>
+                    <span class="text-xl text-900 mb-3">${{data?.price}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-ajax-loader *ngIf="isLoadingComplete"></app-ajax-loader>

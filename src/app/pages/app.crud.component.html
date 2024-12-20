@@ -54,10 +54,7 @@
                             {{product.name}}
                         </td>
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">Image</span>
-                            <img [src]="getImageSrc(product.image)" (click)="opt1.toggle($event)" [alt]="product.name" width="100" class="shadow-4" />
-                            <p-overlayPanel #op1 [showCloseIcon]="true" [style]="{width: '450px'}">
-                                <img [src]="getImageSrc(product.image)" alt="Nature 1" style="width:100%"/>
-                            </p-overlayPanel>
+                            <img [src]="getImageSrc(product.image)" [alt]="product.name" width="100" class="shadow-4" />
                         </td>
                         <td style="width:14%; min-width:8rem;">
                             <span class="p-column-title">Price</span>

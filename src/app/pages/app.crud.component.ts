@@ -3,6 +3,7 @@ import {Product} from '../demo/domain/product';
 import {ProductService} from '../demo/service/productservice';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {AppBreadcrumbService} from '../app.breadcrumb.service';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
     templateUrl: './app.crud.component.html',
@@ -42,7 +43,7 @@ export class AppCrudComponent implements OnInit {
     public isProductsLoading:boolean = false;
 
     constructor(private productService: ProductService, private messageService: MessageService,
-                private confirmationService: ConfirmationService, private breadcrumbService: AppBreadcrumbService) {
+                private confirmationService: ConfirmationService, private breadcrumbService: AppBreadcrumbService,public sanitizer:DomSanitizer) {
         this.breadcrumbService.setItems([
             {label: 'Dashboard'},
             {label: 'product', routerLink: ['/dashboard/products']}
@@ -244,5 +245,18 @@ export class AppCrudComponent implements OnInit {
         },()=>{
             this.isProductsLoading = false;
         })
+    }
+
+    getGoogleDriveImageUrl(url: string): any {
+        if (!url) return '';
+        // Check if it's a Google Drive URL
+        if (url.includes('drive.google.com')) {
+            // Extract the file ID from the URL
+            const fileId = url.match(/[-\w]{25,}/);
+            if (fileId) {
+                // Use the direct download format
+                return `https://drive.google.com/file/d/${fileId[0]}/preview`;
+            }
+        }
     }
 }
