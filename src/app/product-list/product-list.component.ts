@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { AppBreadcrumbService } from "../app.breadcrumb.service";
 import { ProductService } from "../demo/service/productservice";
 import { MessageService } from "primeng/api";
+import { Router } from "@angular/router";
 
 @Component({
     selector: "app-product-list",
@@ -17,7 +18,8 @@ export class ProductListComponent implements OnInit {
     constructor(
         public breadcrumbService: AppBreadcrumbService,
         public ProductsService: ProductService,
-        public messageService:MessageService
+        public messageService:MessageService,
+        public _router:Router
     ) {
         this.breadcrumbService.setItems([
             { label: "E-Commerce" },
@@ -54,5 +56,9 @@ export class ProductListComponent implements OnInit {
       }
 
       return base64String;
+  }
+
+  public goToPreview(){
+    this._router.navigate(['/dashboard/ecommerce/product-preview'])
   }
 }

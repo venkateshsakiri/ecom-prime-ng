@@ -27,19 +27,19 @@ export class AppMenuComponent implements OnInit {
                     {label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/dashboard']}
                 ]
             },
-            {
-                label: 'Modules', icon: 'pi pi-fw pi-star-fill', routerLink: ['/'],
-                items:[]
-                // items:[
-                //     {label: 'Customers', icon: 'pi pi-fw pi-users', routerLink: ['/dashboard/customer']},
-                //     {label: 'leads', icon: 'pi pi-fw pi-dollar', routerLink: ['/dashboard/lead']},
-                //     {label: 'Quotes', icon: 'pi pi-fw pi-sitemap', routerLink: ['/dashboard/quote']},
-                //     {label: 'Jobs', icon: 'pi pi-fw pi-briefcase', routerLink: ['/dashboard/job']},
-                //     {label: 'Calender', icon: 'pi pi-fw pi-calendar', routerLink: ['/dashboard/calender']},
-                //     {label: 'Purchases', icon: 'pi pi-fw pi-shopping-bag', routerLink: ['/dashboard/purchase']},
-                //     {label: 'Suppliers', icon: 'pi pi-fw pi-share-alt', routerLink: ['/dashboard/supplier']},
-                // ]
-            },
+            // {
+            //     label: 'Modules', icon: 'pi pi-fw pi-star-fill', routerLink: ['/'],
+            //     items:[]
+            //     // items:[
+            //     //     {label: 'Customers', icon: 'pi pi-fw pi-users', routerLink: ['/dashboard/customer']},
+            //     //     {label: 'leads', icon: 'pi pi-fw pi-dollar', routerLink: ['/dashboard/lead']},
+            //     //     {label: 'Quotes', icon: 'pi pi-fw pi-sitemap', routerLink: ['/dashboard/quote']},
+            //     //     {label: 'Jobs', icon: 'pi pi-fw pi-briefcase', routerLink: ['/dashboard/job']},
+            //     //     {label: 'Calender', icon: 'pi pi-fw pi-calendar', routerLink: ['/dashboard/calender']},
+            //     //     {label: 'Purchases', icon: 'pi pi-fw pi-shopping-bag', routerLink: ['/dashboard/purchase']},
+            //     //     {label: 'Suppliers', icon: 'pi pi-fw pi-share-alt', routerLink: ['/dashboard/supplier']},
+            //     // ]
+            // },
             {
                 label: 'UI Kit', icon: 'pi pi-fw pi-star-fill', routerLink: ['/uikit'],
                 items: [
@@ -152,18 +152,34 @@ export class AppMenuComponent implements OnInit {
         let user = RootScopeData.userInfo;
         this.menuService.getEntitlements({role:user.user.UserRole}).subscribe((res:any)=>{
             this.isLoadingComplete = false;
-            res.data.forEach((element:any) => {
-                if(element.key === 'ENTITLEMENTS'){
+            res.data.forEach((element:any,index:any) => {
+                if(element.role === 'ADMIN' && index ==0){
+                    let obj = {
+                        label: 'Modules',
+                        items:[]
+                    }
+                    this.model.splice(1, 0, obj);
+                }
+                if(element.role === 'CUSTOMER'&& index ==0){
+                    let obj = {
+                        label: 'E-Commerce',
+                        items:[]
+                    }
+                    this.model.splice(1, 0, obj);
+                }
+                if(element.key === 'ENTITLEMENTS' && element.role === 'ADMIN'){
                     this.model[1].items.push({
                         label: element.name, icon: 'pi pi-fw pi-users', routerLink: ['/dashboard/entitlements']
                     })
+
                 }
-                if(element.key === 'CATEGORIES'){
+                if(element.key === 'CATEGORIES' && element.role === 'ADMIN'){
                     this.model[1].items.push({
                         label: element.name, icon: 'pi pi-fw pi-eject', routerLink: ['/dashboard/category']
                     })
+
                 }
-                if(element.key === 'PRODUCTS'){
+                if(element.key === 'PRODUCTS' && element.role === 'ADMIN'){
                     this.model[1].items.push({
                         label: element.name, icon: 'pi pi-fw pi-ticket', routerLink: ['/dashboard/products']
                     })
@@ -175,25 +191,25 @@ export class AppMenuComponent implements OnInit {
                         routerLink: ['/dashboard/customer']
                     })
                 }
-                if(element.key === 'LEADS'){
-                    this.model[1].items.push({
-                        label: element.name, icon: 'pi pi-fw pi-dollar', routerLink: ['/dashboard/leads']
-                    })
-                }
-                if(element.key === 'QUOTES'){
-                    this.model[1].items.push({
-                        label: element.name, icon: 'pi pi-fw pi-sitemap', routerLink: ['/dashboard/quote']
-                    })
-                }
+                // if(element.key === 'LEADS'){
+                //     this.model[1].items.push({
+                //         label: element.name, icon: 'pi pi-fw pi-dollar', routerLink: ['/dashboard/leads']
+                //     })
+                // }
+                // if(element.key === 'QUOTES'){
+                //     this.model[1].items.push({
+                //         label: element.name, icon: 'pi pi-fw pi-sitemap', routerLink: ['/dashboard/quote']
+                //     })
+                // }
 
                 if(element.key === 'PRODUCT_LIST'){
-                    let obj = {
-                        label: 'E-Commerce',
-                        items:[]
-                    }
-                    this.model.splice(2, 0, obj);
-                    this.model[2].items.push({
+                    this.model[1].items.push({
                         label: element.name, icon: 'pi pi-fw pi-list', routerLink: ['/dashboard/ecommerce/product-list']
+                    })
+                }
+                if(element.key === 'CATEGORIES' && element.role === 'CUSTOMER'){
+                    this.model[1].items.push({
+                        label: element.name, icon: 'pi pi-fw pi-eject', routerLink: ['/dashboard/ecommerce/create-product']
                     })
                 }
 

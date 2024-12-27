@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppBreadcrumbService } from '../app.breadcrumb.service';
 
 @Component({
   selector: 'app-product-preview',
@@ -7,7 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductPreviewComponent implements OnInit {
 
-  constructor() { }
+  constructor(public breadcrumbService:AppBreadcrumbService) {
+    this.breadcrumbService.setItems([
+      { label: "E-Commerce" },
+      {
+          label: "Product List",
+          routerLink: ["/dashboard/ecommerce/product-list"],
+      },
+      {
+          label: "Product preview",
+          routerLink: ["/dashboard/ecommerce/product-preview"],
+      },
+  ]);
+  }
 
   ngOnInit(): void {
   }

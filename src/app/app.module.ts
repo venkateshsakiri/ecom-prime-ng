@@ -1,4 +1,4 @@
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserModule} from '@angular/platform-browser';
@@ -162,6 +162,8 @@ import { CategoriesComponent } from './categories/categories.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductPreviewComponent } from './product-preview/product-preview.component';
 import { AccountInfoComponent } from './account-info/account-info.component';
+import { CreateProductComponent } from './create-product/create-product.component';
+// import { PrimeIconsModule } from 'primeng/icons';
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,
@@ -264,7 +266,8 @@ FullCalendarModule.registerPlugins([
         InputNumberModule,
         TabViewModule,
         OverlayPanelModule,
-        FileUploadModule
+        FileUploadModule,
+        // PrimeIconsModule
     ],
     declarations: [
         AppComponent,
@@ -321,14 +324,15 @@ FullCalendarModule.registerPlugins([
         CategoriesComponent,
         ProductListComponent,
         ProductPreviewComponent,
-        AccountInfoComponent
+        AccountInfoComponent,
+        CreateProductComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
         PhotoService, ProductService, MenuService, AppBreadcrumbService, ConfigService
     ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
     bootstrap: [AppComponent]
 })
 export class AppModule {

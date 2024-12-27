@@ -189,7 +189,7 @@
                 <li #profile class="topbar-item user-profile"
                     [ngClass]="{'active-topmenuitem':appMain.activeTopbarItem === profile}">
                     <a href="#" (click)="appMain.onTopbarItemClick($event,profile)">
-                        <img class="profile-image" [src]="getImageSrc(userInfo?.user?.avatar)" alt="profile">
+                        <img class="profile-image" [src]="userInfo?.user?.avatar?getImageSrc(userInfo?.user?.avatar) : 'assets/demo/images/avatar/user.png'" alt="profile">
                         <div class="profile-info">
                             <h6>Welcome to Ecom</h6>
                             <span>Ecom</span>

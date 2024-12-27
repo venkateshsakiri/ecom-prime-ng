@@ -43,6 +43,8 @@ import { EntitlementsComponent } from './entitlements/entitlements.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { AccountInfoComponent } from './account-info/account-info.component';
+import { ProductPreviewComponent } from './product-preview/product-preview.component';
+import { CreateProductComponent } from './create-product/create-product.component';
 
 @NgModule({
     imports: [
@@ -60,6 +62,8 @@ import { AccountInfoComponent } from './account-info/account-info.component';
                     {path: 'account-info', component: AccountInfoComponent,canActivate:[AuthGuardGuard]},
                     {path: 'products', component: AppCrudComponent,canActivate:[AuthGuardGuard]},
                     {path:'ecommerce/product-list',component:ProductListComponent,canActivate:[AuthGuardGuard]},
+                    {path:'ecommerce/create-product',component:CreateProductComponent,canActivate:[AuthGuardGuard]},
+                    {path:'ecommerce/product-preview',component:ProductPreviewComponent,canActivate:[AuthGuardGuard]},
                     {path: 'lead', component: LeadComponent, canActivate:[AuthGuardGuard]},
                     {path: 'quote', component: QuoteComponent, canActivate:[AuthGuardGuard]},
                     {path: 'job', component: JobviewComponent, canActivate:[AuthGuardGuard]},
