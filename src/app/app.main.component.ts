@@ -139,6 +139,8 @@ export class AppMainComponent implements AfterViewInit, OnDestroy {
         this.authService.isLoggedIn()? false : true;
         RootScopeData.userInfo = '';
         this.router.navigate(['/login']);
+       }else if(event.target.innerText === 'Account Info'){
+        this.router.navigate(['/dashboard/account-info']);
        }
         event.preventDefault();
     }

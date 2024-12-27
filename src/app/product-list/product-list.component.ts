@@ -12,6 +12,8 @@ import { MessageService } from "primeng/api";
 export class ProductListComponent implements OnInit {
     public products: any;
     public isLoadingComplete:boolean = false;
+    activeTabIndex: number = 0;
+
     constructor(
         public breadcrumbService: AppBreadcrumbService,
         public ProductsService: ProductService,

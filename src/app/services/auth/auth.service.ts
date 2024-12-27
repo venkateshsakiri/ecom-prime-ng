@@ -23,10 +23,19 @@ export class AuthService {
       email:form?.email,
       password:form?.password
     }
-    return this.http.post(environment.baseUrl+'/api/auth/login',reqData)
+    if(environment.isSimilate){
+      return this.http.get('/assets/similateApi/user-login.json')
+    }else{
+
+      return this.http.post(environment.baseUrl+'/api/auth/login',reqData)
+    }
   }
 
   public registerUsers(reqData:any){
     return this.http.post(environment.baseUrl+'/api/auth/register',reqData)
+  }
+
+  public updateUserDetails(id:any,reqData:any){
+    return this.http.put(environment.baseUrl+'/api/auth/update/'+id,reqData);
   }
 }

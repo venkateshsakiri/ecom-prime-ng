@@ -160,7 +160,7 @@
                                 </div>
                             </a>
                         </li>
-                        <li role="menuitem">
+                        <!-- <li role="menuitem">
                             <a href="#" (click)="appMain.onTopbarSubItemClick($event)">
                                 <i class="pi pi-users"></i>
                                 <div class="settings-item">
@@ -183,13 +183,13 @@
                                     <h6>Login Settings</h6>
                                 </div>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
                 <li #profile class="topbar-item user-profile"
                     [ngClass]="{'active-topmenuitem':appMain.activeTopbarItem === profile}">
                     <a href="#" (click)="appMain.onTopbarItemClick($event,profile)">
-                        <img class="profile-image" src="assets/layout/images/avatar-profile.png" alt="demo">
+                        <img class="profile-image" [src]="getImageSrc(userInfo?.user?.avatar)" alt="profile">
                         <div class="profile-info">
                             <h6>Welcome to Ecom</h6>
                             <span>Ecom</span>
@@ -198,7 +198,7 @@
 
                     <ul class="fadeInDown">
                         <li class="layout-submenu-header">
-                            <img class="profile-image" src="assets/layout/images/avatar-profile.png" alt="demo">
+                            <img class="profile-image" [src]="getImageSrc(userInfo?.user?.avatar)" alt="profile">
                             <div class="profile-info">
                                 <h6>{{userInfo?.user?.name}}</h6>
                                 <span>Webmaster</span>

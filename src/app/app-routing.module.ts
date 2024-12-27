@@ -42,6 +42,7 @@ import { AuthGuardGuard } from './services/auth-guard/auth-guard.guard';
 import { EntitlementsComponent } from './entitlements/entitlements.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ProductListComponent } from './product-list/product-list.component';
+import { AccountInfoComponent } from './account-info/account-info.component';
 
 @NgModule({
     imports: [
@@ -56,6 +57,7 @@ import { ProductListComponent } from './product-list/product-list.component';
                     {path: 'customer', component: CustomersComponent,canActivate:[AuthGuardGuard]},
                     {path: 'entitlements', component: EntitlementsComponent,canActivate:[AuthGuardGuard]},
                     {path: 'category', component: CategoriesComponent,canActivate:[AuthGuardGuard]},
+                    {path: 'account-info', component: AccountInfoComponent,canActivate:[AuthGuardGuard]},
                     {path: 'products', component: AppCrudComponent,canActivate:[AuthGuardGuard]},
                     {path:'ecommerce/product-list',component:ProductListComponent,canActivate:[AuthGuardGuard]},
                     {path: 'lead', component: LeadComponent, canActivate:[AuthGuardGuard]},

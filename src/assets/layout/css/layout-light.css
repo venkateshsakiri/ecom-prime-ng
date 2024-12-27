@@ -369,6 +369,7 @@ p:last-child {
 .layout-wrapper.layout-rtl .layout-topbar .layout-topbar-wrapper .layout-topbar-right .layout-topbar-actions > li.user-profile > ul .layout-submenu-header img {
   margin-right: 0px;
   margin-left: 6px;
+  border-radius: 50px;
 }
 .layout-wrapper.layout-rtl .layout-topbar .layout-topbar-wrapper .layout-topbar-right .layout-topbar-actions > li.user-profile > ul .layout-submenu-header .profile-info {
   margin-left: 0px;
@@ -672,6 +673,7 @@ p:last-child {
 .layout-topbar-light .layout-topbar .layout-topbar-wrapper .layout-topbar-right .layout-topbar-actions > li.user-profile > a > img {
   width: 32px;
   height: 32px;
+  border-radius: 50px;
 }
 .layout-topbar-light .layout-topbar .layout-topbar-wrapper .layout-topbar-right .layout-topbar-actions > li.user-profile > a .profile-info {
   margin-left: 7px;
@@ -701,6 +703,7 @@ p:last-child {
   width: 36px;
   height: 36px;
   margin-right: 6px;
+  border-radius: 50px;
 }
 .layout-topbar-light .layout-topbar .layout-topbar-wrapper .layout-topbar-right .layout-topbar-actions > li.user-profile > ul .layout-submenu-header .profile-info {
   margin-left: 7px;
@@ -1171,6 +1174,7 @@ p:last-child {
 .layout-topbar-dark .layout-topbar .layout-topbar-wrapper .layout-topbar-right .layout-topbar-actions > li.user-profile > a > img {
   width: 32px;
   height: 32px;
+  border-radius: 50px;
 }
 .layout-topbar-dark .layout-topbar .layout-topbar-wrapper .layout-topbar-right .layout-topbar-actions > li.user-profile > a .profile-info {
   margin-left: 7px;
@@ -1200,6 +1204,7 @@ p:last-child {
   width: 36px;
   height: 36px;
   margin-right: 6px;
+  border-radius: 50px;
 }
 .layout-topbar-dark .layout-topbar .layout-topbar-wrapper .layout-topbar-right .layout-topbar-actions > li.user-profile > ul .layout-submenu-header .profile-info {
   margin-left: 7px;
@@ -1670,6 +1675,7 @@ p:last-child {
 .layout-topbar-dim .layout-topbar .layout-topbar-wrapper .layout-topbar-right .layout-topbar-actions > li.user-profile > a > img {
   width: 32px;
   height: 32px;
+  border-radius: 50px;
 }
 .layout-topbar-dim .layout-topbar .layout-topbar-wrapper .layout-topbar-right .layout-topbar-actions > li.user-profile > a .profile-info {
   margin-left: 7px;
@@ -1699,6 +1705,7 @@ p:last-child {
   width: 36px;
   height: 36px;
   margin-right: 6px;
+  border-radius: 50px;
 }
 .layout-topbar-dim .layout-topbar .layout-topbar-wrapper .layout-topbar-right .layout-topbar-actions > li.user-profile > ul .layout-submenu-header .profile-info {
   margin-left: 7px;

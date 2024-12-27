@@ -39,11 +39,6 @@ export class AppMenuComponent implements OnInit {
                 //     {label: 'Purchases', icon: 'pi pi-fw pi-shopping-bag', routerLink: ['/dashboard/purchase']},
                 //     {label: 'Suppliers', icon: 'pi pi-fw pi-share-alt', routerLink: ['/dashboard/supplier']},
                 // ]
-            },{
-                label: 'E-Commerce',
-                items:[
-
-                ]
             },
             {
                 label: 'UI Kit', icon: 'pi pi-fw pi-star-fill', routerLink: ['/uikit'],
@@ -190,7 +185,13 @@ export class AppMenuComponent implements OnInit {
                         label: element.name, icon: 'pi pi-fw pi-sitemap', routerLink: ['/dashboard/quote']
                     })
                 }
+
                 if(element.key === 'PRODUCT_LIST'){
+                    let obj = {
+                        label: 'E-Commerce',
+                        items:[]
+                    }
+                    this.model.splice(2, 0, obj);
                     this.model[2].items.push({
                         label: element.name, icon: 'pi pi-fw pi-list', routerLink: ['/dashboard/ecommerce/product-list']
                     })

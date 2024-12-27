@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserModule} from '@angular/platform-browser';
@@ -36,7 +36,6 @@ import {FullCalendarModule} from '@fullcalendar/angular';
 import {GalleriaModule} from 'primeng/galleria';
 import {ImageModule} from 'primeng/image';
 import {InplaceModule} from 'primeng/inplace';
-import {InputNumberModule} from 'primeng/inputnumber';
 import {InputMaskModule} from 'primeng/inputmask';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import {InputTextModule} from 'primeng/inputtext';
@@ -74,8 +73,9 @@ import {SplitterModule} from 'primeng/splitter';
 import {StepsModule} from 'primeng/steps';
 import {TabMenuModule} from 'primeng/tabmenu';
 import {TableModule} from 'primeng/table';
-import {TabViewModule} from 'primeng/tabview';
 import {TagModule} from 'primeng/tag';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { TabViewModule } from 'primeng/tabview';
 import {TerminalModule} from 'primeng/terminal';
 import {TieredMenuModule} from 'primeng/tieredmenu';
 import {TimelineModule} from 'primeng/timeline';
@@ -87,6 +87,8 @@ import {TreeModule} from 'primeng/tree';
 import {TreeTableModule} from 'primeng/treetable';
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+// import { TabsModule } from 'primeng/tabs';
+
 // import { DialogModule } from 'primeng/dialog';
 
 import {AppCodeModule} from './blocks/app-code/app.code.component';
@@ -158,7 +160,8 @@ import { SignupComponent } from './signup/signup.component';
 import { EntitlementsComponent } from './entitlements/entitlements.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ProductListComponent } from './product-list/product-list.component';
-
+import { ProductPreviewComponent } from './product-preview/product-preview.component';
+import { AccountInfoComponent } from './account-info/account-info.component';
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,
@@ -208,6 +211,8 @@ FullCalendarModule.registerPlugins([
         InputSwitchModule,
         InputTextModule,
         InputTextareaModule,
+        // TabsModule,
+        TabViewModule,
         KnobModule,
         LightboxModule,
         ListboxModule,
@@ -255,7 +260,11 @@ FullCalendarModule.registerPlugins([
         VirtualScrollerModule,
         AppCodeModule,
         ReactiveFormsModule,
-        FormsModule
+        FormsModule,
+        InputNumberModule,
+        TabViewModule,
+        OverlayPanelModule,
+        FileUploadModule
     ],
     declarations: [
         AppComponent,
@@ -310,13 +319,16 @@ FullCalendarModule.registerPlugins([
         SignupComponent,
         EntitlementsComponent,
         CategoriesComponent,
-        ProductListComponent
+        ProductListComponent,
+        ProductPreviewComponent,
+        AccountInfoComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
         PhotoService, ProductService, MenuService, AppBreadcrumbService, ConfigService
     ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]
 })
 export class AppModule {
