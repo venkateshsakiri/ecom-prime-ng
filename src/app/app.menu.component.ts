@@ -208,9 +208,9 @@ export class AppMenuComponent implements OnInit {
                     })
                 }
                 if(element.key === 'CATEGORIES' && element.role === 'CUSTOMER'){
-                    this.model[1].items.push({
-                        label: element.name, icon: 'pi pi-fw pi-eject', routerLink: ['/dashboard/ecommerce/create-product']
-                    })
+                    // this.model[1].items.push({
+                    //     label: element.name, icon: 'pi pi-fw pi-eject', routerLink: ['/dashboard/ecommerce/create-product']
+                    // })
                 }
 
             });

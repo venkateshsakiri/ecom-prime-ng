@@ -58,7 +58,11 @@ export class ProductListComponent implements OnInit {
       return base64String;
   }
 
-  public goToPreview(){
-    this._router.navigate(['/dashboard/ecommerce/product-preview'])
+  public goToPreview(data:any){
+    this._router.navigate(['/dashboard/ecommerce/product-preview'],{
+      queryParams:{
+        data:JSON.stringify(data)
+      }
+    })
   }
 }

@@ -47,4 +47,12 @@ export class ProductService {
     public getAllProducts(){
         return this.http.get(environment.baseUrl+'/api/customer/product');
     }
+
+    public postProductDetails(req:any){
+        return this.http.post(environment.baseUrl+'/api/admin/product-details',req);
+    }
+
+    public getProductDetails(id:any){
+        return this.http.get(environment.baseUrl+'/api/customer/product/'+id);
+    }
 }

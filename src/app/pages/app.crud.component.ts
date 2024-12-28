@@ -4,6 +4,7 @@ import {ProductService} from '../demo/service/productservice';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {AppBreadcrumbService} from '../app.breadcrumb.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: './app.crud.component.html',
@@ -43,10 +44,10 @@ export class AppCrudComponent implements OnInit {
     public isProductsLoading:boolean = false;
 
     constructor(private productService: ProductService, private messageService: MessageService,
-                private confirmationService: ConfirmationService, private breadcrumbService: AppBreadcrumbService,public sanitizer:DomSanitizer) {
+                private confirmationService: ConfirmationService, private breadcrumbService: AppBreadcrumbService,public sanitizer:DomSanitizer,public router:Router) {
         this.breadcrumbService.setItems([
-            {label: 'Dashboard'},
-            {label: 'product', routerLink: ['/dashboard/products']}
+            {label: 'Modules'},
+            {label: 'products', routerLink: ['/dashboard/products']}
         ]);
     }
 
@@ -258,5 +259,13 @@ export class AppCrudComponent implements OnInit {
                 return `https://drive.google.com/file/d/${fileId[0]}/preview`;
             }
         }
+    }
+
+    public goToDetails(row:any){
+        this.router.navigate(['/dashboard/ecommerce/create-product'],{
+            queryParams:{
+                data:JSON.stringify(row)
+            }
+        })
     }
 }
