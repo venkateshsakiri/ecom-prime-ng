@@ -55,4 +55,14 @@ export class ProductService {
     public getProductDetails(id:any){
         return this.http.get(environment.baseUrl+'/api/customer/product/'+id);
     }
+
+    public addToCartProduct(req:any){
+        return this.http.post(environment.baseUrl+'/api/customer/product/cart',req);
+
+    }
+
+    public getAllCartProduct(id:any){
+        return this.http.get(environment.baseUrl+'/api/customer/product/cart/'+id);
+
+    }
 }

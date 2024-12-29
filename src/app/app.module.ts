@@ -163,6 +163,8 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProductPreviewComponent } from './product-preview/product-preview.component';
 import { AccountInfoComponent } from './account-info/account-info.component';
 import { CreateProductComponent } from './create-product/create-product.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { CategoryListComponent } from './category-list/category-list.component';
 // import { PrimeIconsModule } from 'primeng/icons';
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -325,7 +327,9 @@ FullCalendarModule.registerPlugins([
         ProductListComponent,
         ProductPreviewComponent,
         AccountInfoComponent,
-        CreateProductComponent
+        CreateProductComponent,
+        ShoppingCartComponent,
+        CategoryListComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

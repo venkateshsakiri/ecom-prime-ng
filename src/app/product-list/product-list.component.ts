@@ -3,6 +3,7 @@ import { AppBreadcrumbService } from "../app.breadcrumb.service";
 import { ProductService } from "../demo/service/productservice";
 import { MessageService } from "primeng/api";
 import { Router } from "@angular/router";
+import { RootScopeData } from "../rootScope/rootScopeData";
 
 @Component({
     selector: "app-product-list",
@@ -63,6 +64,24 @@ export class ProductListComponent implements OnInit {
       queryParams:{
         data:JSON.stringify(data)
       }
+    })
+  }
+
+  public addToCart(data:any){
+    console.log(data)
+    let obj={
+      productId:data?._id,
+      productDetailsId:'',
+      userId:RootScopeData.userInfo?.user?.id
+    }
+    this.isLoadingComplete = true;
+    this.ProductsService.addToCartProduct(obj).subscribe((res:any)=>{
+      this.isLoadingComplete = false;
+      if(res?.code == 200){
+      }
+      this.messageService.add({severity: 'success', summary: 'Successful', detail: res?.message, life: 3000});
+    },()=>{
+      this.isLoadingComplete = false;
     })
   }
 }
