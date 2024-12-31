@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppBreadcrumbService } from '../app.breadcrumb.service';
 import { ProductService } from '../demo/service/productservice';
 import { RootScopeData } from '../rootScope/rootScopeData';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -15,7 +16,7 @@ export class ShoppingCartComponent implements OnInit {
   public cartTotal:number = 0;
   public vatFee:number = 8;
   public totalFee:number = 0;
-  constructor(public breadcrumbService:AppBreadcrumbService,public productService:ProductService) {
+  constructor(public breadcrumbService:AppBreadcrumbService,public productService:ProductService,public router:Router) {
     this.breadcrumbService.setItems([
       { label: "E-Commerce" },
       {
@@ -53,5 +54,9 @@ export class ShoppingCartComponent implements OnInit {
       this.cartTotal+= Number(element?.products?.price);
     });
     this.totalFee = this.cartTotal + this.vatFee;
+  }
+
+  public goToCheckout(){
+    this.router.navigate(['/dashboard/ecommerce/check-out'])
   }
 }

@@ -158,7 +158,12 @@ export class AppMenuComponent implements OnInit {
                         label: 'Modules',
                         items:[]
                     }
+                    let obj1 = {
+                        label: 'User Management',
+                        items:[]
+                    }
                     this.model.splice(1, 0, obj);
+                    this.model.splice(2, 0, obj1);
                 }
                 if(element.role === 'CUSTOMER'&& index ==0){
                     let obj = {
@@ -215,6 +220,11 @@ export class AppMenuComponent implements OnInit {
                 if(element.key === 'SHOPPING_CART' && element.role === 'CUSTOMER'){
                     this.model[1].items.push({
                         label: element.name, icon: 'pi pi-fw pi-shopping-cart', routerLink: ['/dashboard/ecommerce/cart']
+                    })
+                }
+                if(element.key === 'CUSTOMERS' && element.role === 'ADMIN'){
+                    this.model[2].items.push({
+                        label: element.name, icon: 'pi pi-fw pi-user', routerLink: ['/dashboard/admin/customers']
                     })
                 }
 

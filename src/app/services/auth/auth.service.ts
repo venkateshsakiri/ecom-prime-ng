@@ -38,4 +38,9 @@ export class AuthService {
   public updateUserDetails(id:any,reqData:any){
     return this.http.put(environment.baseUrl+'/api/auth/update/'+id,reqData);
   }
+
+  public getAllUsers(){
+    return this.http.get(environment.baseUrl+'/api/admin/customers-list');
+
+  }
 }

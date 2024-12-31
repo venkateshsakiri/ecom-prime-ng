@@ -47,6 +47,8 @@ import { ProductPreviewComponent } from './product-preview/product-preview.compo
 import { CreateProductComponent } from './create-product/create-product.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CategoryListComponent } from './category-list/category-list.component';
+import { CheckOutFormComponent } from './check-out-form/check-out-form.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 @NgModule({
     imports: [
@@ -67,7 +69,9 @@ import { CategoryListComponent } from './category-list/category-list.component';
                     {path:'ecommerce/create-product',component:CreateProductComponent,canActivate:[AuthGuardGuard]},
                     {path:'ecommerce/product-preview',component:ProductPreviewComponent,canActivate:[AuthGuardGuard]},
                     {path:'ecommerce/cart',component:ShoppingCartComponent,canActivate:[AuthGuardGuard]},
+                    {path:'ecommerce/check-out',component:CheckOutFormComponent,canActivate:[AuthGuardGuard]},
                     {path:'ecommerce/category-list',component:CategoryListComponent,canActivate:[AuthGuardGuard]},
+                    {path:'admin/customers',component:UserListComponent,canActivate:[AuthGuardGuard]},
                     {path: 'lead', component: LeadComponent, canActivate:[AuthGuardGuard]},
                     {path: 'quote', component: QuoteComponent, canActivate:[AuthGuardGuard]},
                     {path: 'job', component: JobviewComponent, canActivate:[AuthGuardGuard]},
