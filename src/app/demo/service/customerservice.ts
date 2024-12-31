@@ -44,4 +44,11 @@ export class CustomerService {
         return this.http.get(environment.baseUrl+'/api/admin/category');
     }
 
+    public postCoupons(req:any){
+        return this.http.post(environment.baseUrl+'/api/admin/coupons',req);
+    }
+    public getCoupons(){
+        return this.http.get(environment.baseUrl+'/api/admin/coupons');
+    }
+
 }

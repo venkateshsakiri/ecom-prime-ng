@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../demo/service/customerservice';
 import { MessageService } from 'primeng/api';
+import { AppBreadcrumbService } from '../app.breadcrumb.service';
 
 @Component({
   selector: 'app-categories',
@@ -17,7 +18,12 @@ export class CategoriesComponent implements OnInit {
   public loading:boolean = false;
   public isEdit:boolean =false;
 
-  constructor(public customerService:CustomerService,public service: MessageService) { }
+  constructor(public customerService:CustomerService,public service: MessageService,public breadcrumbService:AppBreadcrumbService) {
+    this.breadcrumbService.setItems([
+      {label: 'Modules'},
+      {label: 'category', routerLink: ['/dashboard/category']}
+  ]);
+   }
 
   ngOnInit(): void {
     this.getAllCategoryList();

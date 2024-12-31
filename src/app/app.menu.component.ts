@@ -189,13 +189,23 @@ export class AppMenuComponent implements OnInit {
                         label: element.name, icon: 'pi pi-fw pi-ticket', routerLink: ['/dashboard/products']
                     })
                 }
-                if(element.key === 'CUSTOMERS'){
+                if(element.key === 'ORDER_SUMMARY' && element.role === 'ADMIN'){
                     this.model[1].items.push({
-                        label:element.name,
-                        icon: 'pi pi-fw pi-users',
-                        routerLink: ['/dashboard/customer']
+                        label: element.name, icon: 'pi pi-fw pi-file', routerLink: ['/dashboard/ecommerce/orders']
                     })
                 }
+                if(element.key === 'COUPONS' && element.role === 'ADMIN'){
+                    this.model[1].items.push({
+                        label: element.name, icon: 'pi pi-fw pi-money-bill', routerLink: ['/dashboard/admin/coupons']
+                    })
+                }
+                // if(element.key === 'CUSTOMERS'){
+                //     this.model[1].items.push({
+                //         label:element.name,
+                //         icon: 'pi pi-fw pi-users',
+                //         routerLink: ['/dashboard/customer']
+                //     })
+                // }
                 // if(element.key === 'LEADS'){
                 //     this.model[1].items.push({
                 //         label: element.name, icon: 'pi pi-fw pi-dollar', routerLink: ['/dashboard/leads']
@@ -224,9 +234,10 @@ export class AppMenuComponent implements OnInit {
                 }
                 if(element.key === 'CUSTOMERS' && element.role === 'ADMIN'){
                     this.model[2].items.push({
-                        label: element.name, icon: 'pi pi-fw pi-user', routerLink: ['/dashboard/admin/customers']
+                        label: element.name, icon: 'pi pi-fw pi-users', routerLink: ['/dashboard/admin/customers']
                     })
                 }
+
 
             });
 

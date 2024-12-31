@@ -49,6 +49,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CheckOutFormComponent } from './check-out-form/check-out-form.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { OrderSummaryComponent } from './order-summary/order-summary.component';
+import { CouponsComponent } from './coupons/coupons.component';
 
 @NgModule({
     imports: [
@@ -66,12 +68,14 @@ import { UserListComponent } from './user-list/user-list.component';
                     {path: 'account-info', component: AccountInfoComponent,canActivate:[AuthGuardGuard]},
                     {path: 'products', component: AppCrudComponent,canActivate:[AuthGuardGuard]},
                     {path:'ecommerce/product-list',component:ProductListComponent,canActivate:[AuthGuardGuard]},
+                    {path:'ecommerce/orders',component:OrderSummaryComponent,canActivate:[AuthGuardGuard]},
                     {path:'ecommerce/create-product',component:CreateProductComponent,canActivate:[AuthGuardGuard]},
                     {path:'ecommerce/product-preview',component:ProductPreviewComponent,canActivate:[AuthGuardGuard]},
                     {path:'ecommerce/cart',component:ShoppingCartComponent,canActivate:[AuthGuardGuard]},
                     {path:'ecommerce/check-out',component:CheckOutFormComponent,canActivate:[AuthGuardGuard]},
                     {path:'ecommerce/category-list',component:CategoryListComponent,canActivate:[AuthGuardGuard]},
                     {path:'admin/customers',component:UserListComponent,canActivate:[AuthGuardGuard]},
+                    {path:'admin/coupons',component:CouponsComponent,canActivate:[AuthGuardGuard]},
                     {path: 'lead', component: LeadComponent, canActivate:[AuthGuardGuard]},
                     {path: 'quote', component: QuoteComponent, canActivate:[AuthGuardGuard]},
                     {path: 'job', component: JobviewComponent, canActivate:[AuthGuardGuard]},

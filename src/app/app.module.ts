@@ -167,6 +167,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CheckOutFormComponent } from './check-out-form/check-out-form.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { OrderSummaryComponent } from './order-summary/order-summary.component';
+import { CouponsComponent } from './coupons/coupons.component';
 // import { PrimeIconsModule } from 'primeng/icons';
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -333,7 +335,9 @@ FullCalendarModule.registerPlugins([
         ShoppingCartComponent,
         CategoryListComponent,
         CheckOutFormComponent,
-        UserListComponent
+        UserListComponent,
+        OrderSummaryComponent,
+        CouponsComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
