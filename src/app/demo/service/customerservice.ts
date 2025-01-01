@@ -51,4 +51,8 @@ export class CustomerService {
         return this.http.get(environment.baseUrl+'/api/admin/coupons');
     }
 
+    public getCouponByCode(id:any){
+        return this.http.get(environment.baseUrl+'/api/customer/coupon/'+id);
+    }
+
 }

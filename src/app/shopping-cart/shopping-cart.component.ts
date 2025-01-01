@@ -13,9 +13,11 @@ export class ShoppingCartComponent implements OnInit {
   public cartList:any;
   public quantityList:any;
   public isLoadingComplete:boolean = false;
+  public deleteProductDialog:boolean = false;
   public cartTotal:number = 0;
   public vatFee:number = 8;
   public totalFee:number = 0;
+  public selectedCartItem:any;
   constructor(public breadcrumbService:AppBreadcrumbService,public productService:ProductService,public router:Router) {
     this.breadcrumbService.setItems([
       { label: "E-Commerce" },
@@ -57,6 +59,26 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   public goToCheckout(){
-    this.router.navigate(['/dashboard/ecommerce/check-out'])
+    this.router.navigate(['/dashboard/ecommerce/check-out'],{
+      queryParams:{
+        data:JSON.stringify(this.cartList)
+      }
+    })
+  }
+
+  public deleteProduct(){
+    this.isLoadingComplete = true;
+    this.productService.deleteCartProduct(this.selectedCartItem?.cartId).subscribe((res:any)=>{
+      this.isLoadingComplete = false;
+      this.getAllCartProducts();
+      this.deleteProductDialog = false;
+    },()=>{
+      this.isLoadingComplete = false;
+    })
+  }
+
+  public openDeletePopup(product:any){
+    this.selectedCartItem = product;
+    this.deleteProductDialog = true;
   }
 }
