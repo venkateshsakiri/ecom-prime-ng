@@ -51,6 +51,7 @@ import { CheckOutFormComponent } from './check-out-form/check-out-form.component
 import { UserListComponent } from './user-list/user-list.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { CouponsComponent } from './coupons/coupons.component';
+import { ChattingComponent } from './chatting/chatting.component';
 
 @NgModule({
     imports: [
@@ -66,6 +67,7 @@ import { CouponsComponent } from './coupons/coupons.component';
                     {path: 'entitlements', component: EntitlementsComponent,canActivate:[AuthGuardGuard]},
                     {path: 'category', component: CategoriesComponent,canActivate:[AuthGuardGuard]},
                     {path: 'account-info', component: AccountInfoComponent,canActivate:[AuthGuardGuard]},
+                    {path: 'chat', component: ChattingComponent,canActivate:[AuthGuardGuard]},
                     {path: 'products', component: AppCrudComponent,canActivate:[AuthGuardGuard]},
                     {path:'ecommerce/product-list',component:ProductListComponent,canActivate:[AuthGuardGuard]},
                     {path:'ecommerce/orders',component:OrderSummaryComponent,canActivate:[AuthGuardGuard]},

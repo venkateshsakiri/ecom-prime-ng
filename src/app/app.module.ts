@@ -169,6 +169,7 @@ import { CheckOutFormComponent } from './check-out-form/check-out-form.component
 import { UserListComponent } from './user-list/user-list.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { CouponsComponent } from './coupons/coupons.component';
+import { ChattingComponent } from './chatting/chatting.component';
 // import { PrimeIconsModule } from 'primeng/icons';
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -337,7 +338,8 @@ FullCalendarModule.registerPlugins([
         CheckOutFormComponent,
         UserListComponent,
         OrderSummaryComponent,
-        CouponsComponent
+        CouponsComponent,
+        ChattingComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

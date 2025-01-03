@@ -170,7 +170,12 @@ export class AppMenuComponent implements OnInit {
                         label: 'E-Commerce',
                         items:[]
                     }
+                    let obj1 = {
+                        label: 'User Management',
+                        items:[]
+                    }
                     this.model.splice(1, 0, obj);
+                    this.model.splice(2, 0, obj1);
                 }
                 if(element.key === 'ENTITLEMENTS' && element.role === 'ADMIN'){
                     this.model[1].items.push({
@@ -232,9 +237,19 @@ export class AppMenuComponent implements OnInit {
                         label: element.name, icon: 'pi pi-fw pi-shopping-cart', routerLink: ['/dashboard/ecommerce/cart']
                     })
                 }
+                if(element.key === 'CHAT' && element.role === 'CUSTOMER'){
+                    this.model[2].items.push({
+                        label: element.name, icon: 'pi pi-fw pi-comments', routerLink: ['/dashboard/chat']
+                    })
+                }
                 if(element.key === 'CUSTOMERS' && element.role === 'ADMIN'){
                     this.model[2].items.push({
                         label: element.name, icon: 'pi pi-fw pi-users', routerLink: ['/dashboard/admin/customers']
+                    })
+                }
+                if(element.key === 'CHAT' && element.role === 'ADMIN'){
+                    this.model[2].items.push({
+                        label: element.name, icon: 'pi pi-fw pi-comments', routerLink: ['/dashboard/chat']
                     })
                 }
 
