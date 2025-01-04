@@ -50,7 +50,7 @@
                                 aria-hidden="true" role="presentation"
                                 style="height: 33px; width: 33px; top: -11px; left: 5.48438px;"></span></button></div>
                 </div>
-                <div class="p-3 md:px-4 lg:px-3 lg:py-4 mt-2 overflow-y-auto" style="max-height: 53vh;">
+                <div class="p-3 md:px-4 lg:px-3 lg:py-4 mt-2 overflow-y-auto" style="max-height: 79vh;">
                     <ng-container *ngFor="let message of messageList;">
                         <div class="" *ngIf="userInfo?.id !== message.senderId">
                             <div class="grid grid-nogutter mb-4 ">
@@ -79,26 +79,24 @@
 
                         </div>
                     </ng-container>
-
-
                 </div>
                 <div
-                    class="p-3 md:p-4 lg:p-6 flex flex-column sm:flex-row align-items-center mt-auto border-top-1 surface-border gap-3">
+                    class="p-3 md:p-4 lg:p-4 flex flex-column sm:flex-row align-items-center mt-auto border-top-1 surface-border gap-3">
                     <input id="message" type="text" pinputtext="" [(ngModel)]="message" placeholder="Type a message"
-                        class="p-inputtext p-component p-element flex-1 w-full sm:w-auto border-round ng-untouched ng-pristine ng-valid">
+                        class="p-inputtext p-component p-element flex-1 w-full sm:w-auto border-round">
                     <div class="flex w-full sm:w-auto gap-3"><button pripple=""
-                            class="p-ripple p-element p-button p-button-secondary w-full sm:w-auto justify-content-center text-xl">😀<span
-                                class="p-ink" aria-hidden="true" role="presentation"></span></button><button pbutton=""
+                            class="p-ripple p-element p-button p-button-secondary w-full sm:w-auto justify-content-center text-xl">
+                            <i class="pi pi-image"></i>
+                        </button>
+                            <button pbutton="" [disabled]="!(message || selectedImage)"
                             pripple="" label="Send" icon="pi pi-send" (click)="sendMessages()"
                             class="p-element p-ripple w-full sm:w-auto p-button p-component"><span
                                 class="p-button-icon p-button-icon-left pi pi-send" aria-hidden="true"></span><span
                                 class="p-button-label">Send</span><span class="p-ink" aria-hidden="true"
-                                role="presentation"></span></button></div>
+                                role="presentation"></span></button>
+                    </div>
                 </div>
             </div>
-            <p-overlaypanel styleclass="w-full sm:w-30rem" class="p-element ">
-
-            </p-overlaypanel>
 
     </div>
 </div>

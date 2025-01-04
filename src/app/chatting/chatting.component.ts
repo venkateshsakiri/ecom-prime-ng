@@ -14,10 +14,14 @@ export class ChattingComponent implements OnInit {
     selectedUser: any;
     message:any;
     messageList:any = [];
+    public selectedImage:any;
+    public errorMessage: string | null = null;
 
-    constructor(public authUsers: AuthService,public chatService:ChatService) {}
+    constructor(public authUsers: AuthService,public chatService:ChatService) {
+    }
 
     ngOnInit(): void {
+      this.listenForMessages(); // Listen for incoming messages
         this.userInfo = RootScopeData.userInfo?.user;
         this.getAllUsers();
     }
@@ -51,24 +55,43 @@ export class ChattingComponent implements OnInit {
     this.getAllMessages();
   }
 
-  public sendMessages(){
-    this.chatService.sendMessage(this.selectedUser,{text:this.message,image:'',senderId:this.userInfo?.id}).subscribe((res:any)=>{
-      console.log(res)
-      this.message = '';
-      let message = res?.data
-      this.messageList = [...this.messageList,message];
-      console.log(this.messageList)
+  // public sendMessages(){
+  //   this.chatService.sendMessage(this.selectedUser,{text:this.message,image:'',senderId:this.userInfo?.id}).subscribe((res:any)=>{
+  //     console.log(res)
+  //     this.message = '';
+  //     let message = res?.data
+  //     this.messageList = [...this.messageList,message];
+  //     console.log(this.messageList)
+  //   },()=>{
+
+  //   })
+  // }
+
+  public sendMessages() {
+    this.chatService.sendMessage(this.selectedUser, { text: this.message, image: '', senderId: this.userInfo?.id });
+    this.message = ''; // Clear the input after sending
+  }
+
+  public getAllMessages(){
+    this.chatService.getAllMessagesList(this.selectedUser,{currentUser:this.userInfo?.id}).subscribe((res:any)=>{
+      // console.log(res)
+      this.messageList = res?.data;
     },()=>{
 
     })
   }
 
-  public getAllMessages(){
-    this.chatService.getAllMessagesList(this.selectedUser,{currentUser:this.userInfo?.id}).subscribe((res:any)=>{
-      console.log(res)
-      this.messageList = res?.data;
-    },()=>{
-
-    })
+  private listenForMessages() {
+    this.chatService.getMessages().subscribe(
+        (message: any) => {
+            if(message?.success){
+              this.messageList.push(message?.message); // Add incoming message to the list
+            }
+            this.errorMessage = null; // Clear any previous error messages
+        },
+        (error) => {
+            console.error('Error receiving message:', error);
+        }
+    );
   }
 }
