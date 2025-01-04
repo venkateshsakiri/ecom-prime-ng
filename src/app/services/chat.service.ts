@@ -35,6 +35,7 @@ export class ChatService {
     this.socket.on('error', (error) => {
         console.error('Socket error:', error);
     });
+
   }
 
   public sendMessage(selectedUser:any,req:any){
@@ -73,5 +74,24 @@ export class ChatService {
     });
 }
 
+
+public unReadMessages() {
+  return new Observable(observer => {
+      this.socket.on('updateUnreadCount', (message) => { // Change 'message' to 'receiveMessage'
+          observer.next(message); // Emit received message to subscribers
+      });
+
+      this.socket.on('error', (error) => {
+          console.error('Socket error:', error);
+          observer.error(error); // Emit error to subscribers
+      });
+
+      // Cleanup on unsubscribe
+      return () => {
+          this.socket.off('receiveMessage'); // Change 'message' to 'receiveMessage'
+          this.socket.off('error');
+      };
+  });
+}
 
 }

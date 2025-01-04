@@ -14,12 +14,12 @@
                                 <div class="relative md:mr-3"><img alt="user"
                                         class="w-3rem h-3rem border-circle shadow-4"
                                         [src]="user?.avatar? getImageSrc(user?.avatar) : 'assets/demo/images/avatar/user.png'"><span
-                                        class="w-1rem h-1rem border-circle border-2 surface-border absolute bg-green-400 bg-yellow-400"
+                                        class="w-1rem h-1rem border-circle border-2 surface-border absolute " [ngClass]="user?.isActive? 'bg-green-400' : 'bg-yellow-400'"
                                         style="bottom: 2px; right: 2px;"></span></div>
                                 <div class="flex-column hidden md:flex"><span class="text-900 font-semibold block">{{user?.name}}</span><span
                                         class="block text-600 text-overflow-ellipsis overflow-hidden white-space-nowrap w-10rem text-sm">Sed
                                         do eiusmod tempor incididunt ut labore et dolore magna aliqua</span></div>
-                            </div><span class="text-700 font-semibold ml-auto hidden md:inline">2d</span>
+                        </div><span *ngIf="user?.count >0"> <i class="pi" pBadge  severity="success" value="{{user?.count}}"></i></span>
                         </div>
                     </app-user-card>
 
@@ -34,7 +34,7 @@
                     <div class="relative flex align-items-center mr-3"><img alt="user.name"
                             class="w-4rem h-4rem border-circle shadow-4"
                             [src]="selectedUser?.avatar?getImageSrc(selectedUser?.avatar) : 'assets/demo/images/avatar/user.png'"><span
-                            class="w-1rem h-1rem border-circle border-2 surface-border absolute bottom-0 right-0 bg-green-400"></span>
+                            class="w-1rem h-1rem border-circle border-2 surface-border absolute bottom-0 right-0" [ngClass]="selectedUser?.isActive? 'bg-green-400' : 'bg-yellow-400'"></span>
                     </div>
                     <div class="mr-2"><span class="text-900 font-semibold block">{{selectedUser?.name}}</span><span
                             class="text-700">Last active 1 hour ago</span></div>
@@ -50,9 +50,9 @@
                                 aria-hidden="true" role="presentation"
                                 style="height: 33px; width: 33px; top: -11px; left: 5.48438px;"></span></button></div>
                 </div>
-                <div class="p-3 md:px-4 lg:px-3 lg:py-4 mt-2 overflow-y-auto" style="max-height: 79vh;">
+                <div class="p-3 md:px-4 lg:px-3 lg:py-4 mt-2 overflow-y-auto" style="max-height: 79vh;" #chatContainer>
                     <ng-container *ngFor="let message of messageList;">
-                        <div class="" *ngIf="userInfo?.id !== message.senderId">
+                        <div class="" *ngIf="((userInfo?.id !== message.senderId) &&( message?.senderId === selectedUser?._id))">
                             <div class="grid grid-nogutter mb-4 ">
                                 <div class="mt-1 mr-3"><img alt="user.name" class="w-3rem h-3rem border-circle shadow-4"
                                     [src]="selectedUser?.avatar?getImageSrc(selectedUser?.avatar) : 'assets/demo/images/avatar/user.png'"></div>
@@ -60,7 +60,7 @@
                                     <p class="text-900 font-semibold mb-3">{{selectedUser?.name}}</p><span
                                         class="text-700 inline-block font-medium border-1 surface-border p-3 white-space-normal border-round"
                                         style="word-break: break-word; max-width: 80%;">{{message?.text}}</span>
-                                    <p class="text-700 mt-3">01:56<i class="pi pi-check text-green-400 ml-2"></i></p>
+                                    <p class="text-700 mt-3">{{message?.createdAt? updateDateFormat(message?.createdAt) :''}}<i class="pi pi-check text-green-400 ml-2"></i></p>
                                 </div>
                             </div>
 
@@ -73,7 +73,7 @@
                                     <p class="text-900 font-semibold mb-3">You</p>
                                     <span class="inline-block text-left font-medium border-1 surface-border bg-primary-100 text-primary-900 p-3 white-space-normal border-round"
                                         style="word-break: break-word; max-width: 80%;">{{message?.text}}</span>
-                                    <p class="text-700 mt-3">01:56 <i class="pi pi-check text-green-400 mr-3"></i></p>
+                                    <p class="text-700 mt-3">{{message?.createdAt? updateDateFormat(message?.createdAt) :''}} <i class="pi pi-check text-green-400 mr-3"></i></p>
                                 </div>
                             </div>
 
