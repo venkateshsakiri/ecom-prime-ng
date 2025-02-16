@@ -25,7 +25,7 @@ export class AppCrudComponent implements OnInit {
 
     product: Product;
 
-    selectedProducts: Product[];
+    selectedProducts: any;
 
     submitted: boolean;
 
@@ -88,7 +88,8 @@ export class AppCrudComponent implements OnInit {
 
     deleteProduct(product: Product) {
         this.deleteProductDialog = true;
-        this.product = {...product};
+        this.selectedProducts = product
+        this.product = product;
     }
 
     confirmDeleteSelected(){
@@ -99,10 +100,13 @@ export class AppCrudComponent implements OnInit {
     }
 
     confirmDelete(){
-        this.deleteProductDialog = false;
-        this.products = this.products.filter(val => val.id !== this.product.id);
-        this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000});
-        this.product = {};
+        this.productService.deleteProductById(this.selectedProducts?._id).subscribe((res:any)=>{
+            this.deleteProductDialog = false;
+            if(res.code == 200){
+                this.messageService.add({severity: 'success', summary: 'Successful', detail: res?.message, life: 3000});
+            }
+            this.getAllProducts();
+        })
     }
 
     hideDialog() {
@@ -222,7 +226,13 @@ export class AppCrudComponent implements OnInit {
 
         reader.readAsDataURL(file);
     }
-
+    onRowClick(event: MouseEvent, product: any) {
+        // Check if the click was on the delete button
+        if ((event.target as HTMLElement).closest('.p-button-rounded.p-button-warning')) {
+            return; // Do nothing if the delete button was clicked
+        }
+        this.goToDetails(product); // Proceed to go to details if it's not the delete button
+    }
     getImageSrc(base64String: string): string {
         if (!base64String) {
             return 'path/to/default/image.jpg'; // Default image if none provided

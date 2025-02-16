@@ -42,7 +42,7 @@
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-product>
-                    <tr (click)="goToDetails(product)">
+                    <tr (click)="onRowClick($event, product)">
                         <td>
                             <p-tableCheckbox [value]="product"></p-tableCheckbox>
                         </td>
@@ -73,7 +73,7 @@
                         <td>
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editProduct(product)"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product);event.stopPropagation()"></button>
                             </div>
                         </td>
                     </tr>

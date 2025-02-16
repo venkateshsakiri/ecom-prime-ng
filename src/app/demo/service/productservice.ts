@@ -70,4 +70,9 @@ export class ProductService {
         return this.http.delete(environment.baseUrl+'/api/customer/product/cart/'+id);
 
     }
+
+    public deleteProductById(id:any){
+        return this.http.delete(environment.baseUrl+'/api/admin/product/'+id);
+
+    }
 }
