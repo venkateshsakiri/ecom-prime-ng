@@ -5,12 +5,16 @@ import { AppComponent } from './app.component';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth/auth.service';
 import { RootScopeData } from './rootScope/rootScopeData';
+import { io , Socket} from "socket.io-client"
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'app-main',
     templateUrl: './app.main.component.html'
 })
 export class AppMainComponent implements AfterViewInit, OnDestroy {
+
+    public socket:Socket;
 
     rotateMenuButton: boolean;
 
@@ -45,7 +49,9 @@ export class AppMainComponent implements AfterViewInit, OnDestroy {
     search = false;
 
     constructor(public renderer: Renderer2, private menuService: MenuService, private primengConfig: PrimeNGConfig,
-                public app: AppComponent,public router:Router,public authService:AuthService) { }
+                public app: AppComponent,public router:Router,public authService:AuthService,) {
+                    this.socket =io(environment.baseUrl);
+                }
 
     ngAfterViewInit() {
         // hides the horizontal submenus or top menu if outside is clicked
@@ -137,6 +143,7 @@ export class AppMainComponent implements AfterViewInit, OnDestroy {
     onTopbarSubItemClick(event) {
        if(event.target.innerText === 'Logout'){
         this.authService.isLoggedIn()? false : true;
+        this.socket.emit('logout',RootScopeData.userInfo?.user?.id)
         RootScopeData.userInfo = '';
         this.router.navigate(['/login']);
        }else if(event.target.innerText === 'Account Info'){
