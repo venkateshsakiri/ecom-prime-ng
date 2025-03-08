@@ -23,7 +23,7 @@ import {ButtonDemoComponent} from './demo/view/buttondemo.component';
 import {TableDemoComponent} from './demo/view/tabledemo.component';
 import {ListDemoComponent} from './demo/view/listdemo.component';
 import {TreeDemoComponent} from './demo/view/treedemo.component';
-import {IconsComponent} from './utilities/icons.component';
+// import {IconsComponent} from './utilities/icons.component';
 import {AppCrudComponent} from './pages/app.crud.component';
 import {AppCalendarComponent} from './pages/app.calendar.component';
 import {AppTimelineDemoComponent} from './pages/app.timelinedemo.component';
@@ -52,11 +52,21 @@ import { UserListComponent } from './user-list/user-list.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { CouponsComponent } from './coupons/coupons.component';
 import { ChattingComponent } from './chatting/chatting.component';
+import { loadRemoteModule } from '@angular-architects/module-federation';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
     imports: [
         RouterModule.forRoot([
-            {path:'' , redirectTo:'/login', pathMatch:'full'},
+            {path:'' , redirectTo:'/mfe1', pathMatch:'full'},
+            {path:'mfe1',loadChildren:()=>{
+                return loadRemoteModule({
+                  type:'module',
+                  remoteEntry:environment.remoteUrl,
+                  // remoteName:'mfe1',
+                  exposedModule: './RemoteEntryModule'
+                }).then(m=>m.RemoteEntryModule).catch(err=>console.error(err))
+              }},
             {path:'login',component:SignupComponent},
             {
                 path:'dashboard',component:AppMainComponent, canActivate:[AuthGuardGuard],
@@ -100,7 +110,7 @@ import { ChattingComponent } from './chatting/chatting.component';
                     {path: 'uikit/misc', component: MiscDemoComponent},
                     {path: 'uikit/charts', component: ChartsDemoComponent},
                     {path: 'uikit/file', component: FileDemoComponent},
-                    {path: 'utilities/icons', component: IconsComponent},
+                    // {path: 'utilities/icons', component: IconsComponent},
                     {path: 'pages/crud', component: AppCrudComponent},
                     {path: 'pages/calendar', component: AppCalendarComponent},
                     {path: 'pages/timeline', component: AppTimelineDemoComponent},

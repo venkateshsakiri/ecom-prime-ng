@@ -21,7 +21,7 @@ import {ChartModule} from 'primeng/chart';
 import {CheckboxModule} from 'primeng/checkbox';
 import {ChipModule} from 'primeng/chip';
 import {ChipsModule} from 'primeng/chips';
-import {CodeHighlighterModule} from 'primeng/codehighlighter';
+// import {CodeHighlighterModule} from 'primeng/codehighlighter';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmPopupModule} from 'primeng/confirmpopup';
 import {ColorPickerModule} from 'primeng/colorpicker';
@@ -41,7 +41,7 @@ import {InputSwitchModule} from 'primeng/inputswitch';
 import {InputTextModule} from 'primeng/inputtext';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {KnobModule} from 'primeng/knob';
-import {LightboxModule} from 'primeng/lightbox';
+// import {LightboxModule} from 'primeng/lightbox';
 import {ListboxModule} from 'primeng/listbox';
 import {MegaMenuModule} from 'primeng/megamenu';
 import {MenuModule} from 'primeng/menu';
@@ -120,7 +120,7 @@ import {EmptyDemoComponent} from './demo/view/emptydemo.component';
 import {ChartsDemoComponent} from './demo/view/chartsdemo.component';
 import {FileDemoComponent} from './demo/view/filedemo.component';
 import {DocumentationComponent} from './demo/view/documentation.component';
-import {IconsComponent} from './utilities/icons.component';
+// import {IconsComponent} from './utilities/icons.component';
 import {AppCrudComponent} from './pages/app.crud.component';
 import {AppCalendarComponent} from './pages/app.calendar.component';
 import {AppTimelineDemoComponent} from './pages/app.timelinedemo.component';
@@ -171,11 +171,11 @@ import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { CouponsComponent } from './coupons/coupons.component';
 import { ChattingComponent } from './chatting/chatting.component';
 // import { PrimeIconsModule } from 'primeng/icons';
-FullCalendarModule.registerPlugins([
-    dayGridPlugin,
-    timeGridPlugin,
-    interactionPlugin
-]);
+// FullCalendarModule.registerPlugins([
+//     dayGridPlugin,
+//     timeGridPlugin,
+//     interactionPlugin
+// ]);
 
 @NgModule({
     imports: [
@@ -200,7 +200,7 @@ FullCalendarModule.registerPlugins([
         CheckboxModule,
         ChipModule,
         ChipsModule,
-        CodeHighlighterModule,
+        // CodeHighlighterModule,
         ConfirmDialogModule,
         ConfirmPopupModule,
         ColorPickerModule,
@@ -223,7 +223,7 @@ FullCalendarModule.registerPlugins([
         // TabsModule,
         TabViewModule,
         KnobModule,
-        LightboxModule,
+        // LightboxModule,
         ListboxModule,
         MegaMenuModule,
         MenuModule,
@@ -306,7 +306,7 @@ FullCalendarModule.registerPlugins([
         EmptyDemoComponent,
         FileDemoComponent,
         DocumentationComponent,
-        IconsComponent,
+        // IconsComponent,
         AppCrudComponent,
         AppCalendarComponent,
         AppTimelineDemoComponent,

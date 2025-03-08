@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {EventService} from '../../demo/service/eventservice';
 import {AppBreadcrumbService} from "../../app.breadcrumb.service";
-
+import { CalendarOptions } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import timeGridPlugin from '@fullcalendar/timegrid';
 @Component({
     templateUrl: './calender.component.html',
     styles: [`
@@ -31,7 +34,12 @@ import {AppBreadcrumbService} from "../../app.breadcrumb.service";
     `]
 })
 export class CalenderComponent implements OnInit {
-
+    calendarOptions: CalendarOptions = {
+        initialView: 'dayGridMonth',
+        plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin],
+        editable: true,
+        selectable: true
+      };
     events: any[];
 
     options: any;

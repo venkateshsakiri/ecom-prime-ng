@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Table } from '@fullcalendar/daygrid';
+// import { Table } from '@fullcalendar/daygrid';
+import { Table } from 'primeng/table';
 import { CustomerService } from '../demo/service/customerservice';
 import { MessageService } from 'primeng/api';
 import { AppBreadcrumbService } from '../app.breadcrumb.service';

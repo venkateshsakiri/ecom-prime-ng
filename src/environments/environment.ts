@@ -7,5 +7,7 @@ export const environment = {
   production: false,
   baseUrl:'http://localhost:8003',
   isSimilate:false,
-//  baseUrl:'https://ecom-nodejs-mxio.onrender.com'
+//  baseUrl:'https://ecom-nodejs-mxio.onrender.com',
+  remoteUrl:"https://landing-page-ecom.netlify.app/remoteEntry.js"
+  // remoteUrl:"http://localhost:4300/remoteEntry.js"
 };

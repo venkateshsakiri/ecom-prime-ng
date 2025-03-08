@@ -1,0 +1,9 @@
+{
+    "/mfe1": {
+      "target": "https://landing-page-ecom.netlify.app",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }
+  }
+  
